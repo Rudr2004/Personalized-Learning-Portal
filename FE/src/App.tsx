@@ -13,6 +13,7 @@ import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Certificates from "./pages/Certificates";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -27,12 +28,56 @@ const App = () => (
             <Navbar />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/learning-path" element={<LearningPath />} />
-              <Route path="/lesson/:id" element={<LessonPlayer />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/certificates" element={<Certificates />} />
+
+              <Route
+                path="/learning-path"
+                element={
+                  <ProtectedRoute>
+                    <LearningPath />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/lesson/:id"
+                element={
+                  <ProtectedRoute>
+                    <LessonPlayer />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/analytics"
+                element={
+                  <ProtectedRoute>
+                    <Analytics />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/search"
+                element={
+                  <ProtectedRoute>
+                    <Search />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/certificates"
+                element={
+                  <ProtectedRoute>
+                    <Certificates />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
