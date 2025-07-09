@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }: Props) => {
     const token = localStorage.getItem("registeredUser");
 
     if (!token) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     return <>{children}</>;

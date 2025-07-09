@@ -14,6 +14,8 @@ import Profile from "./pages/Profile";
 import Certificates from "./pages/Certificates";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +27,18 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <div className="min-h-screen bg-background">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
             <Navbar />
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/"
+                element={
+                  <ProtectedRoute>
+                    <Index />
+                  </ProtectedRoute>
+                } />
 
               <Route
                 path="/learning-path"
